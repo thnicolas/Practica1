@@ -29,6 +29,7 @@ correct_answers_index = [1, 2, 0, 3, 1]
 def respuesta_permitida(respuesta, valores):
     return respuesta in valores
 
+puntaje = 0
 
 for _ in range(3):
     
@@ -48,9 +49,11 @@ for _ in range(3):
             if respuesta_permitida(user_answer, {0, 1, 2, 3}):
                 if user_answer == correct_answers_index[question_index]:
                     print("¡Correcto!")
+                    puntaje +=1
                     break  
                 else:
                     print("Incorrecto. Intenta de nuevo.")
+                    puntaje -=0.5
             else:
                 print("Respuesta NO válida")
                 sys.exit(1)  
@@ -64,4 +67,7 @@ for _ in range(3):
         print(answers[question_index][correct_answers_index[question_index]])
 
     print()  
+
+print (f"el puntaje total obtenido es:{puntaje}")
+
 
