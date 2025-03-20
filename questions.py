@@ -53,7 +53,8 @@ for _ in range(3):
                     break  
                 else:
                     print("Incorrecto. Intenta de nuevo.")
-                    puntaje -=0.5
+                    if puntaje != 0:
+                            puntaje -=0.5
             else:
                 print("Respuesta NO válida")
                 sys.exit(1)  
