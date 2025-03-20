@@ -66,9 +66,8 @@ for i in range(3):
             print("Respuesta NO valida")
             sys.exit(1)  
         
-    else:
-        print("La respuesta correcta es:")
-        print(questions_to_ask[i][correct_answers_index[questions_to_ask[i][2]]])
+    print("La respuesta correcta es:")
+    print(questions_to_ask[j][1][questions_to_ask[j][2]])
 
     print()  
 
