@@ -46,28 +46,29 @@ for i in range(3):
     
     for intento in range(2):
 
-        try:
            
-            user_answer = int(input("Respuesta (1-4): ")) - 1
-            if respuesta_permitida(user_answer, {0, 1, 2, 3}):
-                if user_answer == questions_to_ask[j][2]:
-                    print("¡Correcto!")
-                    puntaje +=1
-                    break  
-                else:
-                    print("Incorrecto. Intenta de nuevo.")
-                    if puntaje  > 0:
+            user_answer = input("Respuesta (1-4): ") 
+            if user_answer.isnumeric():
+                if respuesta_permitida(user_answer, {"1", "2", "3", "4"}):
+                    answer = int(user_answer) -1 
+                    if answer  == questions_to_ask[j][2]:
+                        print("¡Correcto!")
+                        puntaje +=1
+                        break  
+                    else:
+                        print("Incorrecto. Intenta de nuevo.")
+                        if puntaje  > 0 and intento == 0 :
                             puntaje -=0.5
-            else:
-                print("Respuesta NO válida*")
-                sys.exit(1)  
+                else:
+                        print("Respuesta NO válida*")
+                        sys.exit(1)  
 
-        except ValueError:
-            print("Respuesta NO valida")
-            sys.exit(1)  
-        
-    print("La respuesta correcta es:")
-    print(questions_to_ask[j][1][questions_to_ask[j][2]])
+            else:       
+                    print("Respuesta NO valida")
+                    sys.exit(1)  
+            if (intento==1):    
+                print("La respuesta correcta es:")
+                print(questions_to_ask[j][1][questions_to_ask[j][2]])
 
     print()  
 
