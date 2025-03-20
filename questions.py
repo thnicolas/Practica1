@@ -32,17 +32,16 @@ def respuesta_permitida(respuesta, valores):
 puntaje = 0
 
 questions_to_ask = random.sample(list(zip(questions,answers, correct_answers_index)), k=3)
-#print (questions_to_ask[0][])
-#print (questions_to_ask[1][1])
+
 
 
 for i in range(3):
 
     j=i
-    print(questions_to_ask[i][0])  # Imprime la pregunta
+    print(questions_to_ask[i][0]) 
 
     for i, respuesta in enumerate(questions_to_ask[i][1], start=1):
-        print(f"{i}. {respuesta}")  # Imprime respuestas con índice desde 1
+        print(f"{i}. {respuesta}")  
     
     for intento in range(2):
 
@@ -57,8 +56,12 @@ for i in range(3):
                         break  
                     else:
                         print("Incorrecto. Intenta de nuevo.")
-                        if puntaje  > 0 and intento == 0 :
+                        if puntaje  > 0 and intento == 0 : 
                             puntaje -=0.5
+                        """
+                            Si la persona vuelve a responder mal la misma pregunta , no decrementa el puntaje.
+                            Esto lo hago para evitar distintos resultados para la misma cantidad de aciertos.
+                        """
                 else:
                         print("Respuesta NO válida*")
                         sys.exit(1)  
@@ -66,7 +69,7 @@ for i in range(3):
             else:       
                     print("Respuesta NO valida")
                     sys.exit(1)  
-            if (intento==1):    
+            if (intento==1):  #Si la persona respondia mal dos veces ,se muestra cual era la respuesta correcta.  
                 print("La respuesta correcta es:")
                 print(questions_to_ask[j][1][questions_to_ask[j][2]])
 
