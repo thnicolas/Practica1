@@ -31,32 +31,35 @@ def respuesta_permitida(respuesta, valores):
 
 puntaje = 0
 
-for _ in range(3):
-    
-    question_index = random.randint(0, len(questions) - 1)
-    print(questions[question_index])
-    
-    for i, answer in enumerate(answers[question_index]):
-        print(f"{i + 1}. {answer}")
+questions_to_ask = random.sample(list(zip(questions,answers, correct_answers_index)), k=3)
+#print (questions_to_ask[0][])
+#print (questions_to_ask[1][1])
+
+
+for i in range(3):
+
+    j=i
+    print(questions_to_ask[i][0])  # Imprime la pregunta
+
+    for i, respuesta in enumerate(questions_to_ask[i][1], start=1):
+        print(f"{i}. {respuesta}")  # Imprime respuestas con índice desde 1
     
     for intento in range(2):
-        user_answer = input("Respuesta (1-4): ")
 
         try:
            
-            user_answer = int(user_answer) - 1
-            
+            user_answer = int(input("Respuesta (1-4): ")) - 1
             if respuesta_permitida(user_answer, {0, 1, 2, 3}):
-                if user_answer == correct_answers_index[question_index]:
+                if user_answer == questions_to_ask[j][2]:
                     print("¡Correcto!")
                     puntaje +=1
                     break  
                 else:
                     print("Incorrecto. Intenta de nuevo.")
-                    if puntaje != 0:
+                    if puntaje  > 0:
                             puntaje -=0.5
             else:
-                print("Respuesta NO válida")
+                print("Respuesta NO válida*")
                 sys.exit(1)  
 
         except ValueError:
@@ -65,7 +68,7 @@ for _ in range(3):
         
     else:
         print("La respuesta correcta es:")
-        print(answers[question_index][correct_answers_index[question_index]])
+        print(questions_to_ask[i][correct_answers_index[questions_to_ask[i][2]]])
 
     print()  
 
